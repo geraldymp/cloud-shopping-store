@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Cloud_Shopping_StoreApp: App {
+    
+    @StateObject private var cartManager = CartManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProductListView()
+                .environmentObject(cartManager)
         }
     }
 }

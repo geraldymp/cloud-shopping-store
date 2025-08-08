@@ -6,6 +6,23 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E67B03292E43296E00FC2ECF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E67B03282E43296E00FC2ECF /* Alamofire */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E67B03252E4328A800FC2ECF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E6D9D2A42E43176700FC4A5A /* Cloud Shopping Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cloud Shopping Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E67B03292E43296E00FC2ECF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +73,7 @@
 				E6D9D2A02E43176700FC4A5A /* Sources */,
 				E6D9D2A12E43176700FC4A5A /* Frameworks */,
 				E6D9D2A22E43176700FC4A5A /* Resources */,
+				E67B03252E4328A800FC2ECF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -65,6 +84,7 @@
 			);
 			name = "Cloud Shopping Store";
 			packageProductDependencies = (
+				E67B03282E43296E00FC2ECF /* Alamofire */,
 			);
 			productName = "Cloud Shopping Store";
 			productReference = E6D9D2A42E43176700FC4A5A /* Cloud Shopping Store.app */;
@@ -94,6 +114,9 @@
 			);
 			mainGroup = E6D9D29B2E43176700FC4A5A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E67B03272E43296E00FC2ECF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E6D9D2A52E43176700FC4A5A /* Products */;
 			projectDirPath = "";
@@ -335,6 +358,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E67B03272E43296E00FC2ECF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E67B03282E43296E00FC2ECF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E67B03272E43296E00FC2ECF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E6D9D29C2E43176700FC4A5A /* Project object */;
 }
