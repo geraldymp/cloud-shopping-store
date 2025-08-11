@@ -8,43 +8,48 @@
 import Foundation
 import Combine
 
-//struct Product: Codable, Identifiable {
-//    let id: Int
-//    let title: String
-//    let price: Double
-//    let description: String
-//    let category: String
-//    let image: String
-//}
-struct QuestionsResponse: Codable {
-    let results: [Question]
-}
-
-struct Question: Codable, Identifiable {
-    var id: UUID { UUID() }
-    let category: String
-    let difficulty: String
-    let question: String
-    let correct_answer: String
-}
-
 class ProductViewModel: ObservableObject {
-//    @Published var products: [Question] = []
     @Published var products: [Product] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
+    
+    @Published var categories: [Category] = []
+    @Published var selectedCategory: Category? = nil
+    
+    @Published var selectedSort: Sort? = nil
+    let sortType = "title"
 
-//    private let url = URL(string: "https://opentdb.com/api.php?amount=10&category=9&type=boolean")!
-    private let url = URL(string: "https://dummyjson.com/products")!
+    private let categoriesURL = URL(string: "https://dummyjson.com/products/categories")!
 
     func fetchProducts() {
+        let baseUrl = "https://dummyjson.com/products"
+        var urlString = baseUrl
+        if (selectedCategory != nil) {
+            urlString = "\(baseUrl)/category/\(selectedCategory!.slug)"
+        }
+        
+        var components = URLComponents(string: urlString)
+        
+        var queryItems: [URLQueryItem] = []
+        
+        if (selectedSort != nil) {
+            queryItems.append(URLQueryItem(name: "sortBy", value: selectedSort?.sortBy))
+            queryItems.append(URLQueryItem(name: "order", value: selectedSort?.order))
+        }
+        
+        if !queryItems.isEmpty {
+                components?.queryItems = queryItems
+            }
+        
+        guard let url = components?.url else { return }
+        
         isLoading = true
         errorMessage = nil
 
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 self.isLoading = false
-                
+                print(url)
 
                 if let error = error {
                     self.errorMessage = "❌ \(error.localizedDescription)"
@@ -63,7 +68,23 @@ class ProductViewModel: ObservableObject {
                     self.errorMessage = "❌ Failed to decode: \(error.localizedDescription)"
                 }
             }
-        }.resume()
+        }
+        .resume()
+    }
+    
+    func fetchCategories() {
+        URLSession.shared.dataTask(with: categoriesURL) { data, response, error in
+            DispatchQueue.main.async {
+                do {
+                    let decoded = try JSONDecoder().decode([Category].self, from: data!)
+                    self.categories = decoded
+                } catch {
+                    return
+                }
+            }
+            
+        }
+        .resume()
     }
 }
 
