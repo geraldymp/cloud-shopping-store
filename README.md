@@ -41,13 +41,9 @@ Cloud Shopping Store is a mock e-commerce app built with SwiftUI. This project i
 - Learn how to fetch and decode JSON from APIs.
 - Implement basic e-commerce features in a modular way.
 
-## Dependencies
-
-- [Alamofire](https://github.com/Alamofire/Alamofire) (included, but main networking uses `URLSession` for learning purposes).
-
 ## Credits
 
-- [DummyJSON] (https://dummyjson.com/) (for free products API)
+- [DummyJSON](https://dummyjson.com/) (for free products API)
 ---
 
 **Note:** This app is for educational purposes only and uses mock/public APIs. No real transactions or user data are handled.
